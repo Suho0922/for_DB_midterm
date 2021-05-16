@@ -12,4 +12,4 @@ AND unix_timestamp(rental_date) <= unix_timestamp('2005.08.31')
 )
 SELECT *
 FROM inven_film JOIN rent_date_between
-WHERE inven_flim.inventory_id = rent_date_between.inventory_id;
+WHERE inven_film.inventory_id = rent_date_between.inventory_id;
