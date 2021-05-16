@@ -1,28 +1,23 @@
-WITH catName_store_numRent_moreThan500 AS(
-WITH cat_store_numRent_moreThan500 AS(
-WITH cat_store_numRent AS(
-WITH cat_store_rental AS(
-WITH inv_cat_store AS(
-SELECT inventory_id, category_id, store_id
+WITH country_category_film_inv AS(
+WITH country_store AS(
+WITH country_address AS(
+SELECT country_id, address_id
+FROM city JOIN address 
+ON city.city_id = address.city_id
+)
+SELECT country_id, store_id 
+FROM store JOIN country_address
+ON store.address_id = country_address.address_id
+),
+inv_cat_store_film AS(
+SELECT inventory_id, category_id, store_id, inventory.film_id
 FROM inventory JOIN film_category
 ON inventory.film_id = film_category.film_id
 )
-SELECT category_id, store_id, rental_id
-FROM rental JOIN inv_cat_store
-ON rental.inventory_id = inv_cat_store.inventory_id
+SELECT country_id, category_id, film_id, inventory_id
+FROM country_store JOIN inv_cat_store_film 
+ON country_store.store_id = inv_cat_store_film.store_id
 )
-SELECT category_id, store_id, COUNT(rental_id) as num_of_rental 
-FROM cat_store_rental
-GROUP BY category_id, store_id
-)
-SELECT *
-FROM cat_store_numRent
-WHERE num_of_rental > 500
-)
-SELECT store_id, name, num_of_rental
-FROM category JOIN cat_store_numRent_moreThan500
-ON category.category_id = cat_store_numRent_moreThan500.category_id
-)
-SELECT *
-FROM catName_store_numRent_moreThan500
-ORDER BY store_id, num_of_rental DESC;
+SELECT 
+FROM rental JOIN country_category_film_inv 
+ON rental.inventory_id = country_category_film_inv.inventory_id;
