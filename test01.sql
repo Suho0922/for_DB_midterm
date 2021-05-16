@@ -18,6 +18,6 @@ SELECT country_id, category_id, film_id, inventory_id
 FROM country_store JOIN inv_cat_store_film 
 ON country_store.store_id = inv_cat_store_film.store_id
 )
-SELECT 
+SELECT country_id, category_id, film_id, rental_id
 FROM rental JOIN country_category_film_inv 
 ON rental.inventory_id = country_category_film_inv.inventory_id;
