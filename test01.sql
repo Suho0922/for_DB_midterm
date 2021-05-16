@@ -1,3 +1,4 @@
+WITH film_rent_more_than_26 AS(
 WITH film_rent_count AS(
 WITH rent_inven_film AS(
 WITH inven_film AS (
@@ -21,4 +22,8 @@ GROUP BY film_id, title
 )
 SELECT *
 FROM film_rent_count
-WHERE ctRental > 26;
+WHERE ctRental > 26
+)
+SELECT *
+FROM film_rent_more_than_26
+ORDER BY ctRental DESC;
