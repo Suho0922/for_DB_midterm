@@ -6,7 +6,7 @@ WHERE inventory.inventory_id = rental.inventory_id
 )
 SELECT store_id, film_id , COUNT(inventory_id) as retent_ct
 FROM film_store
-GROUP BY store_id, film_id;
+GROUP BY store_id, film_id
 )
 SELECT * 
 FROM film_store_cnt;
