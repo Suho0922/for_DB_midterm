@@ -23,6 +23,6 @@ SELECT *
 FROM customer
 WHERE store_id = 1
 )
-SELECT *
+SELECT customer_1_id.customer_id, overdued_count
 FROM customer_1_id LEFT JOIN customer_overdued_count
 ON customer_1_id.customer_id = customer_overdued_count.customer_id;
