@@ -56,7 +56,7 @@ WHERE Ranking = 1
 )
 SELECT country, category_id, actor_id 
 FROM country JOIN country_category_actor_first
-ON country.country_id JOIN country_category_actor_first.country_id
+ON country.country_id = country_category_actor_first.country_id
 )
 SELECT country, name as categoryName, actor_id  
 FROM category JOIN countryName_category_actorTop 
