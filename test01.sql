@@ -1,3 +1,4 @@
+WITH country_category_actor_sumPayment_RANK AS(
 WITH country_category_actor_sumPayment AS(
 WITH country_category_actor_totalPayment AS(
 WITH country_category_film_totalPayment AS(
@@ -45,5 +46,8 @@ GROUP BY category_id, country_id, actor_id
 )
 SELECT country_id, category_id, actor_id, total_payment_of_actor,
 	RANK() OVER(PARTITION BY country_id, category_id ORDER BY total_payment_of_actor DESC) Ranking
-FROM country_category_actor_sumPayment;
-
+FROM country_category_actor_sumPayment
+)
+SELECT country_id, category_id, actor_id
+FROM country_category_actor_sumPayment_RANK
+WHERE Ranking = 1 ;
