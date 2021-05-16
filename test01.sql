@@ -25,4 +25,5 @@ WHERE store_id = 1
 )
 SELECT customer_1_id.customer_id, overdued_count
 FROM customer_1_id LEFT JOIN customer_overdued_count
-ON customer_1_id.customer_id = customer_overdued_count.customer_id;
+ON customer_1_id.customer_id = customer_overdued_count.customer_id
+WHERE customer_1_id.customer_id < 100;
