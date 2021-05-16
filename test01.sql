@@ -1,3 +1,4 @@
+WITH country_rental AS(
 WITH country_inventory AS(
 WITH country_store AS(
 WITH country_address AS(
@@ -15,4 +16,9 @@ ON inventory.store_id = country_store.store_id
 )
 SELECT rental_id, country_id
 FROM rental JOIN country_inventory
-ON rental.inventory_id = country_inventory.inventory_id;
+ON rental.inventory_id = country_inventory.inventory_id
+)
+SELECT country_id, amount
+FROM payment JOIN country_rental 
+ON payment.rental_id = country_rental.rental_id;
+
