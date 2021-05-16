@@ -1,3 +1,4 @@
+WITH film_store_cnt_less5 AS(
 WITH film_store_cnt AS(
 WITH film_store AS(
 SELECT inventory.inventory_id, film_id, store_id 
@@ -10,4 +11,8 @@ GROUP BY store_id, film_id
 )
 SELECT * 
 FROM film_store_cnt
-WHERE rent_ct < 5;
+WHERE rent_ct < 5
+)
+SELECT store_id , COUNT(rent_ct) as num_film
+FROM film_store_cnt_less5
+GROUP BY store_id;
