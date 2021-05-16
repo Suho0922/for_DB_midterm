@@ -1,3 +1,6 @@
+WITH country_category_actor_totalPayment AS(
+WITH country_category_film_totalPayment
+WITH country_category_film_totalPayment AS(
 WITH country_category_film_amount AS(
 WITH country_category_film_rental AS(
 WITH country_category_film_inv AS(
@@ -30,4 +33,12 @@ ON payment.rental_id = country_category_film_rental.rental_id
 )
 SELECT country_id, category_id, film_id , SUM(amount) as total_payment_of_film
 FROM country_category_film_amount
-GROUP BY country_id, category_id, film_id;
+GROUP BY country_id, category_id, film_id
+)
+SELECT country_id, category_id, actor_id, total_payment_of_film
+FROM film_actor JOIN country_category_film_totalPayment
+ON film_actor.film_id = country_category_film_totalPayment.film_id 
+)
+SELECT category_id, country_id, actor_id, SUM(total_payment_of_film) as total_payment_of_actor
+FROM country_category_actor_totalPayment
+GROUP BY category_id, country_id, actor_id;
