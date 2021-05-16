@@ -1,5 +1,5 @@
 WITH film_satisfied AS (
-WITH film_moreThan_avgInv_rent AS(
+WITH film_moreThan_avgInv AS(
 WITH avg_inventory AS(
 WITH film_inventoryCount AS(
 SELECT film_id , COUNT(inventory_id) as inventory_cnt
