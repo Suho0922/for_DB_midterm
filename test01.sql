@@ -1,4 +1,4 @@
-WITH film_moreThan_avgInv AS (
+WITH film_satisfied AS (
 WITH film_moreThan_avgInv_rent AS(
 WITH avg_inventory AS(
 WITH film_inventoryCount AS(
@@ -38,5 +38,5 @@ FROM film_moreThan_avgInv JOIN film_rent_moreThan
 ON film_moreThan_avgInv.film_id = film_rent_moreThan.film_id
 )
 SELECT *
-FROM film_moreThan_avgInv_rent 
+FROM film_satisfied 
 ORDER BY film_id;
