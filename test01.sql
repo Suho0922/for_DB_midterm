@@ -19,5 +19,5 @@ FROM film
 WHERE film_id >= 10 AND film_id < 20 AND rental_rate > 4
 )
 SELECT film_betweenID_overRate.film_id
-WHERE film_betweenID_overRate JOIN film_prolific_actor
+FROM film_betweenID_overRate JOIN film_prolific_actor
 ON film_betweenID_overRate.film_id = film_prolific_actor.film_id;
