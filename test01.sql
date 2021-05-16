@@ -7,8 +7,8 @@ ON film_category.film_id = film_actor.film_id
 SELECT *
 FROM 
 (
-SELECT f_c.actor_id, f_c.category_id, COUNT(film_id) as ct
+SELECT f_c.actor_id, f_c.category_id, COUNT(film_id) as ctFilm
 FROM f_c
 GROUP BY f_c.actor_id, f_c.category_id
 )actor_category
-WHERE ct > 5;
+WHERE ctFilm > 5;
