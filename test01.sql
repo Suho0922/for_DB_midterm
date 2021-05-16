@@ -1,5 +1,4 @@
 WITH country_category_actor_totalPayment AS(
-WITH country_category_film_totalPayment
 WITH country_category_film_totalPayment AS(
 WITH country_category_film_amount AS(
 WITH country_category_film_rental AS(
