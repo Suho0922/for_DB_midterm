@@ -11,7 +11,7 @@ SELECT f_c.actor_id, f_c.category_id, COUNT(film_id) as ctFilm
 FROM f_c
 GROUP BY f_c.actor_id, f_c.category_id
 )actor_category
-WHERE ctFilm > 5;
+WHERE ctFilm > 5
 
 INTO OUTFILE '/var/lib/mysql-files/problem1.csv'
 FIELDS TERMINATED BY '|'
