@@ -1,3 +1,4 @@
+WITH country_statisfied AS(
 WITH country_totalPayment AS(
 WITH country_payment_amount AS(
 WITH country_rental AS(
@@ -45,7 +46,11 @@ GROUP BY country_id
 )
 SELECT country_totalPayment.country_id, num_of_store, total_payment 
 FROM country_totalPayment JOIN country_storeNum
-ON country_totalPayment.country_id = country_storeNum.country_id;
+ON country_totalPayment.country_id = country_storeNum.country_id
+)
+SELECT country, num_of_store, total_payment
+FROM country_statisfied JOIN country
+ON country_statisfied.country_id = country.country_id;
 
 
 
