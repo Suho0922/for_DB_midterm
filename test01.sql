@@ -1,3 +1,4 @@
+WITH catName_store_numRent_moreThan500 AS(
 WITH cat_store_numRent_moreThan500 AS(
 WITH cat_store_numRent AS(
 WITH cat_store_rental AS(
@@ -20,4 +21,8 @@ WHERE num_of_rental > 500
 )
 SELECT store_id, name, num_of_rental
 FROM category JOIN cat_store_numRent_moreThan500
-ON category.category_id = cat_store_numRent_moreThan500.category_id;
+ON category.category_id = cat_store_numRent_moreThan500.category_id
+)
+SELECT *
+FROM catName_store_numRent_moreThan500
+ORDER BY store_id, num_of_rental DESC;
