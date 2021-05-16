@@ -1,29 +1,13 @@
-WITH film_rent_more_than_26 AS(
-WITH film_rent_count AS(
-WITH rent_inven_film AS(
-WITH inven_film AS (
-SELECT inventory.film_id, title, inventory_id 
-FROM inventory JOIN film
-WHERE inventory.film_id = film.film_id
-),
-rent_date_between AS (
+WITH customer_1 AS(
 SELECT * 
-FROM rental
-WHERE unix_timestamp(rental_date) >= unix_timestamp('2005.06.01')
-AND unix_timestamp(rental_date) <= unix_timestamp('2005.08.31')
+FROM customer 
+WHERE store_id = 1
+),
+overdued_rental AS(
+SELECT * 
+FROM rental 
+WHERE rental_date + interval 30 day < CURRENT_DATE() AND return_date is NULL
 )
-SELECT film_id, title, rental_id
-FROM inven_film JOIN rent_date_between
-WHERE inven_film.inventory_id = rent_date_between.inventory_id
-)
-SELECT film_id, title, COUNT(rental_id) as ctRental
-FROM rent_inven_film
-GROUP BY film_id, title
-)
-SELECT *
-FROM film_rent_count
-WHERE ctRental > 26
-)
-SELECT *
-FROM film_rent_more_than_26
-ORDER BY ctRental DESC;
+SELECT customer_1.customer_id, rental_id 
+FROM customer_1, overdued_rental
+WHERE customer_1.customer_id = overdued_rental.customer_id;
