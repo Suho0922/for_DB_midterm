@@ -1,3 +1,4 @@
+WITH customer_overdued_count AS(
 WITH customer_overdued AS(
 WITH customer_1 AS(
 SELECT * 
@@ -15,4 +16,13 @@ WHERE customer_1.customer_id = overdued_rental.customer_id
 )
 SELECT customer_id, COUNT(rental_id) as overdued_count 
 FROM customer_overdued
-GROUP BY customer_id;
+GROUP BY customer_id
+),
+customer_1_id AS(
+SELECT *
+FROM customer
+WHERE store_id = 1
+)
+SELECT *
+FROM customer_1_id LEFT JOIN customer_overdued_count
+ON customer_1_id.customer_id = customer_overdued_count.customer_id;
