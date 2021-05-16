@@ -1,3 +1,4 @@
+WITH film_rent_count AS(
 WITH rent_inven_film AS(
 WITH inven_film AS (
 SELECT inventory.film_id, title, inventory_id 
@@ -14,6 +15,10 @@ SELECT film_id, title, rental_id
 FROM inven_film JOIN rent_date_between
 WHERE inven_film.inventory_id = rent_date_between.inventory_id
 )
-SELECT film_id, title, COUNT(rental_id)
+SELECT film_id, title, COUNT(rental_id) as ctRental
 FROM rent_inven_film
-GROUP BY film_id, title;
+GROUP BY film_id, title
+)
+SELECT *
+FROM film_rent_count
+WHERE ctRental > 26;
