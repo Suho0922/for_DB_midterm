@@ -1,3 +1,4 @@
+WITH country_payment_amount AS(
 WITH country_rental AS(
 WITH country_inventory AS(
 WITH country_store AS(
@@ -20,5 +21,9 @@ ON rental.inventory_id = country_inventory.inventory_id
 )
 SELECT country_id, amount
 FROM payment JOIN country_rental 
-ON payment.rental_id = country_rental.rental_id;
+ON payment.rental_id = country_rental.rental_id
+)
+SELECT country_id, SUM(amount) as total_payment
+FROM country_payment_amount
+GROUP BY country_id;
 
