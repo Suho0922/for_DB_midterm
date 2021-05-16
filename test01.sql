@@ -1,3 +1,4 @@
+WITH country_category_actor_sumPayment AS(
 WITH country_category_actor_totalPayment AS(
 WITH country_category_film_totalPayment AS(
 WITH country_category_film_amount AS(
@@ -40,4 +41,9 @@ ON film_actor.film_id = country_category_film_totalPayment.film_id
 )
 SELECT category_id, country_id, actor_id, SUM(total_payment_of_film) as total_payment_of_actor
 FROM country_category_actor_totalPayment
-GROUP BY category_id, country_id, actor_id;
+GROUP BY category_id, country_id, actor_id
+)
+SELECT country_id, category_id, actor_id, total_payment_of_actor,
+	RANK() OVER(PARTITION BY country_id, category_id ORDER BY total_payment_of_actor DESC) Ranking
+FROM country_category_actor_sumPayment;
+
