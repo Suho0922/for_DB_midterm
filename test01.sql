@@ -11,7 +11,7 @@ WHERE film_cnt > 30
 )
 SELECT DISTINCT(film_id)
 FROM film_actor JOIN prolific_actor
-ON film_actor.actor_id = prolific_actor.actor_id;
+ON film_actor.actor_id = prolific_actor.actor_id
 ),
 film_betweenID_overRate AS(
 SELECT film_id
