@@ -6,6 +6,7 @@ WITH country_category_actor_totalPayment AS(
 WITH country_category_film_totalPayment AS(
 WITH country_category_film_amount AS(
 WITH country_category_film_rental AS(
+
 WITH country_category_film_inv AS(
 WITH country_store AS(
 WITH country_address AS(
@@ -29,7 +30,11 @@ ON country_store.store_id = inv_cat_store_film.store_id
 SELECT country_id, category_id, film_id, rental_id
 FROM rental JOIN country_category_film_inv 
 ON rental.inventory_id = country_category_film_inv.inventory_id
+WHERE unix_timestamp(rental_date) >= unix_timestamp('2005.01.01') AND
+	unix_timestamp(rental_date) <= unix_timestamp('2005.12.31')
 )
+
+
 SELECT country_id, category_id, film_id, amount
 FROM payment JOIN country_category_film_rental
 ON payment.rental_id = country_category_film_rental.rental_id
