@@ -12,6 +12,6 @@ SELECT film_id , COUNT(inventory_id) as inventory_cnt
 FROM inventory 
 GROUP BY film_id
 )
-SELECT film_id, inventory_cnt
+SELECT film_id
 FROM film_inventoryCount2, avg_inventory
 WHERE inventory_cnt > avg_inventory.inventory_avg;
