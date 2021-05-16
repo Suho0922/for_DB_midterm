@@ -4,9 +4,10 @@ SELECT inventory.inventory_id, film_id, store_id
 FROM inventory JOIN rental 
 WHERE inventory.inventory_id = rental.inventory_id
 )
-SELECT store_id, film_id , COUNT(inventory_id) as retent_ct
+SELECT store_id, film_id , COUNT(inventory_id) as rent_ct
 FROM film_store
 GROUP BY store_id, film_id
 )
 SELECT * 
-FROM film_store_cnt;
+FROM film_store_cnt
+WHERE rent_ct < 5;
