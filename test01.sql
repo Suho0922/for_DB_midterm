@@ -1,4 +1,5 @@
 WITH film_moreThan_avgInv AS (
+WITH film_moreThan_avgInv_rent AS(
 WITH avg_inventory AS(
 WITH film_inventoryCount AS(
 SELECT film_id , COUNT(inventory_id) as inventory_cnt
@@ -34,4 +35,8 @@ WHERE rent_cnt >= 30
 ) 
 SELECT film_moreThan_avgInv.film_id, rent_cnt
 FROM film_moreThan_avgInv JOIN film_rent_moreThan
-ON film_moreThan_avgInv.film_id = film_rent_moreThan.film_id;
+ON film_moreThan_avgInv.film_id = film_rent_moreThan.film_id
+)
+SELECT *
+FROM film_moreThan_avgInv_rent 
+ORDER BY film_id;
