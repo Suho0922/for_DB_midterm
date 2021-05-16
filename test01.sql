@@ -1,3 +1,4 @@
+WITH customer_overdued AS(
 WITH customer_1 AS(
 SELECT * 
 FROM customer 
@@ -10,4 +11,8 @@ WHERE rental_date + interval 30 day < CURRENT_DATE() AND return_date is NULL
 )
 SELECT customer_1.customer_id, rental_id 
 FROM customer_1, overdued_rental
-WHERE customer_1.customer_id = overdued_rental.customer_id;
+WHERE customer_1.customer_id = overdued_rental.customer_id
+)
+SELECT customer_id, COUNT(rental_id) as overdued_count 
+FROM customer_overdued
+GROUP BY customer_id;
