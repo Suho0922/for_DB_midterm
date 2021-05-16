@@ -1,3 +1,5 @@
+WITH countryName_category_actorTop AS(
+WITH country_category_actor_first AS(
 WITH country_category_actor_sumPayment_RANK AS(
 WITH country_category_actor_sumPayment AS(
 WITH country_category_actor_totalPayment AS(
@@ -50,4 +52,13 @@ FROM country_category_actor_sumPayment
 )
 SELECT country_id, category_id, actor_id
 FROM country_category_actor_sumPayment_RANK
-WHERE Ranking = 1 ;
+WHERE Ranking = 1
+)
+SELECT country, category_id, actor_id 
+FROM country JOIN country_category_actor_first
+ON country.country_id JOIN country_category_actor_first.country_id
+)
+SELECT country, name as categoryName, actor_id  
+FROM category JOIN countryName_category_actorTop 
+ON category.category_id = countryName_category_actorTop.category_id;
+
