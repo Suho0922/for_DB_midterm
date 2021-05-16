@@ -6,4 +6,5 @@ ON film_category.film_id = film_actor.film_id
 )
 SELECT f_c.actor_id, f_c.category_id, COUNT(film_id)
 FROM f_c
-GROUP BY f_c.actor_id, f_c.category_id;
+GROUP BY f_c.actor_id, f_c.category_id
+WHERE COUNT(film_id) > 6;
