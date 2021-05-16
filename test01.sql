@@ -1,3 +1,4 @@
+WITH customer_satisfied AS(
 WITH film_satisfied AS(
 WITH film_prolific_actor AS(
 WITH prolific_actor AS(
@@ -39,4 +40,8 @@ WHERE NOT EXISTS(
 		WHERE cf_2.customer_id = cf_1.customer_id AND
 			cf_2.film_id = fs.film_id
 		)
-);
+)
+)
+SELECT customer.customer_id, first_name, last_name
+FROM customer_satisfied JOIN customer
+ON customer_satisfied.customer_id = customer.customer_id; 
